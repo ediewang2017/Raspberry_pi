@@ -2,6 +2,8 @@
 
 This project contains a small HTTP Server to toggle GPIOs on a Raspberry Pi.
 
+__*This tool will only work on Raspberry Pi 1-4. Raspberry Pi 5 changed the GPIO driver, breaking compatibility to all previous devices. If you want to use a more modern device, you will have to look for a GPIO library supporting Raspberry Pi 5 or newer*__
+
 ## Setup the Pi
 You will need
 - A Raspberry Pi
