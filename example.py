@@ -1,11 +1,9 @@
 import requests
 
 # IP Address
-host = 'http://127.0.0.1:5000'  # Change me
-
+host = 'http://129.217.181.190:5000'  # Change me
 # Value to set
 value = 0x0F0F
-
 try:
     response = requests.get(f'{host}/{value:04X}')
     response.raise_for_status()
