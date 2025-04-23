@@ -70,8 +70,8 @@ all_active_Pin = result_table.apply(lambda row: np.concatenate([row['Active_Pins
 
 # First, turn off all relays by setting all pins to HIGH
 for pin in all_control_pins:
-    GPIO.setup(pin, GPIO.OUT)
-    GPIO.output(pin, GPIO.HIGH)  # Initially turn OFF all relays (assuming HIGH = OFF)
+    GPIO.setup(int(pin), GPIO.OUT)
+    GPIO.output(int(pin), GPIO.HIGH)  # Initially turn OFF all relays (assuming HIGH = OFF)
     time.sleep(0.1)
 
 # Loop through each time step in the result array
@@ -84,12 +84,12 @@ for t in range(result_table.shape[0]):
     
     relays_to_turn_off = list(set(previous_active_pins) - set(active_pins))
     for pin in relays_to_turn_off:
-        GPIO.output(pin, GPIO.HIGH)  # OFF
+        GPIO.output(int(pin), GPIO.HIGH)  # OFF
         time.sleep(0.1) 
     # Turn on relays that are in the resistors stage but weren't in the previous stage
     relays_to_turn_on = list(set(active_pins) - set(previous_active_pins))
     for pin in relays_to_turn_on:
-        GPIO.output(pin, GPIO.LOW)  # ON
+        GPIO.output(int(pin), GPIO.LOW)  # ON
         time.sleep(0.1)
         
     # Update the previous_active_pins to the  active_pins
@@ -99,7 +99,7 @@ for t in range(result_table.shape[0]):
 
 # Clean up GPIO (set all to OFF then cleanup)
 for pin in all_control_pins:
-    GPIO.output(pin, GPIO.HIGH)
+    GPIO.output(int(pin), GPIO.HIGH)
 GPIO.cleanup()   
     
     
